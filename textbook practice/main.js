@@ -108,3 +108,62 @@
 // })
 
 // 10
+// Дан инпут и кнопка. По нажатию на кнопку заблокируйте инпут.
+// Дан инпут и две кнопки. Пусть нажатие на первую кнопку блокирует инпут, а нажатие на вторую - отблокирует.
+// Дан инпут и кнопка. По нажатию на кнопку узнайте, заблокирован инпут или нет.
+
+// let elem = document.querySelector('#elem')
+// let btnOpen = document.querySelector('.btnOpen')
+// let btnBlock = document.querySelector('.btnBlock')
+// let info = document.querySelector('.info')
+// elem.disabled = true
+
+// btnOpen.addEventListener('click', function () {
+// 	elem.disabled = false
+// })
+
+// btnBlock.addEventListener('click', function () {
+// 	elem.disabled = true
+// })
+
+// info.addEventListener('click', function () {
+// 	console.log(elem.disabled)
+// })
+
+// 11
+// Дан чекбокс и две кнопки. По нажатию на первую кнопку установите чекбокс в отмеченное состояние, а по нажатию на вторую - в неотмеченное.
+// Дан чекбокс, кнопка и абзац. По нажатию на кнопку, если чекбокс отмечен, выведите в абзац слово 'привет', а если чекбокс не отмечен, то слово 'пока'.
+
+// let elem = document.querySelector('#elem')
+// let btnON = document.querySelector('.on')
+// let btnOff = document.querySelector('.off')
+// let btnText = document.querySelector('.text')
+// let par = document.querySelector('p')
+
+// btnON.addEventListener('click', function () {
+// 	elem.checked = true
+// })
+
+// btnOff.addEventListener('click', function () {
+// 	elem.checked = false
+// })
+
+// btnText.addEventListener('click', function () {
+// 	if (elem.checked) {
+// 		par.textContent = 'Привет'
+// 	} else {
+// 		par.textContent = 'Пока'
+// 	}
+// })
+
+// 12
+// Дан чекбокс и кнопка. Сделайте так, чтобы каждый клик по кнопке приводил к смене состояния чекбокса.
+
+let check = document.querySelector('input')
+let press = document.querySelector('button')
+
+press.addEventListener('click', function () {
+	check.checked = !check.checked
+})
+
+// 13

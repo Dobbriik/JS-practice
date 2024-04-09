@@ -1,0 +1,135 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(176 225 225);
+  font-family: sans-serif;
+}
+
+ul, li, h2 {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 15px;
+}
+
+/* Добаить задачу */
+
+/* Обёртка */
+
+/* Ввод задачи */
+.task-inp {
+  margin-bottom: 20px;
+  margin-right: 10px;
+  border: none;
+  padding-left: 10px;
+  font-size: 18px;
+  border-radius: 10px;
+  width: 300px;
+  height: 50px;
+  outline: transparent;
+  scale: none;
+  transition: outline 0.2s, scale 1s ;
+}
+
+.task-inp:focus::placeholder {
+  padding-left: 12px;
+  scale: 1.1;
+}
+
+.task-inp:focus {
+  /* border: none; */
+  
+  outline: 2px solid green;
+}
+
+
+/* Кнопка вывода */
+.btn {
+  color: white;
+  background-color: rgb(255 121 72);
+  padding: 10px 20px;
+  font-size: 18px;
+  height: 50px;
+  border: none;
+  border-radius: 10px;  
+  scale: none ;
+  transition: background-color 0.3s, scale 0.1s
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.btn:active {
+  scale: 1.05;
+  
+}
+.btn_active:active {
+  background-color: rgb(255, 136, 93);
+}
+/* /Добаить задачу */
+
+
+/* Карточка */
+
+/* Обёртка */
+.task-list-div {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Список */
+.list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: white;
+
+}
+
+/* Элемент списка */
+
+.list__item:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+/* Заголовок списка */
+.list__title {
+  font-size: 23px;
+}
+
+/* кнопка списка */
+.btn_min {
+  background-color: gray;
+  height: auto;
+  width: 100%;
+}
+
+/* кнопка списка зелёная*/
+.btn_green {
+  background-color: #43ae43;
+}
+/* /Карточка */
+
+
+/* /Карточка выполнена*/
+.list_done {
+  background-color: #18a518;
+}
+
+.btn_done {
+  background-color: #0b640b;
+}

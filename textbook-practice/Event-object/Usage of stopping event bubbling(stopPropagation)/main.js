@@ -5,7 +5,7 @@ let block = document.querySelector('#block')
 
 button.addEventListener('click', function (event) {
 	block.classList.add('active')
-	event.stopImmediatePropagation()
+	event.stopPropagation()
 })
 
 parent.addEventListener('click', function () {

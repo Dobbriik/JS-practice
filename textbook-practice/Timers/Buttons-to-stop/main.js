@@ -56,19 +56,23 @@ stop1.addEventListener('click', function () {
 // })
 
 // 2
+// не учитывает то, что на кнопку старт можно сделать несколько нажатий. Для исправления этой проблемы можно по нажатию на кнопку старт отвязывать событие от этой кнопки, а по нажатию на кнопку стоп - привязывать обратно. Исправьте проблему.
 
 let start2 = document.querySelector('#start2')
 let stop2 = document.querySelector('#stop2')
 
 let timerId2
 
-start2.addEventListener('click', function () {
+function func() {
 	timerId2 = setInterval(function () {
 		let date = new Date()
 		console.log(date.getMinutes() + ' ' + date.getSeconds())
 	}, 1000)
-})
-
-stop2.addEventListener('click', function () {
-	clearInterval(timerId2)
-})
+	start2.removeEventListener('click', func)
+	stop2.addEventListener('click', function remove() {
+		clearInterval(timerId2)
+		stop2.addEventListener('click', remove)
+		start2.addEventListener('click', func)
+	})
+}
+start2.addEventListener('click', func)

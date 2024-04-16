@@ -1,0 +1,8 @@
+.colored {
+	color: red;
+	text-decoration: line-through;
+}
+
+.color-green {
+	background-color: green;
+}

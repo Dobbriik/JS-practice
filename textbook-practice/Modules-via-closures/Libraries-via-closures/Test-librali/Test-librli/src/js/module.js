@@ -3,16 +3,16 @@
 // 		console.log('object')
 // 	},
 // }
-;(function () {
-	const module = {}
-	module.find = function () {
-		console.log('object')
-	}
-	module.find2 = function () {
-		console.log('object2')
-	}
-	window.module = module
-})()
+// ;(function () {
+// 	const module = {}
+// 	module.find = function () {
+// 		console.log('object')
+// 	}
+// 	module.find2 = function () {
+// 		console.log('object2')
+// 	}
+// 	window.module = module
+// })()
 const newMap = function (arr, cb) {
 	let newArr = []
 	for (const elem of arr) {

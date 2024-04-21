@@ -1,6 +1,5 @@
 // import _ from 'underscore'
-import { newFind, newMap } from './src/js/module.js'
-console.log(adas)
+import { newFind, newMap, newMapObject } from './src/js/module.js'
 
 let arr = newMap([1, 2, 3], function (elem) {
 	return elem ** 2
@@ -15,3 +14,9 @@ let object = {
 	family: 'shitikov',
 	age: '25',
 }
+
+let newObject = newMapObject(object, function (elem) {
+	return elem + '!'
+})
+
+console.log(newObject)

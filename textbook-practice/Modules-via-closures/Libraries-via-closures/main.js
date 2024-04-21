@@ -62,7 +62,3 @@ console.log(maths.avg([1, 2, 3]) + maths.square(2))
 	}
 	window.avgNew = { avg1, avg2, avg3 }
 })()
-
-let elem = avgNew.avg2([1, 2])
-
-console.log(elem)

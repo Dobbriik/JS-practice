@@ -1,6 +1,14 @@
 import { circle } from "/src/js/module/circle.js";
+import { commonDivisors } from "/src/js/module/common-divisors.js";
+import { dividers } from "/src/js/module/dividers.js";
+import { leastCommonMultiple } from "/src/js/module/least-common-multiple.js";
+import { mostCommonDivisor } from "/src/js/module/most-common-divisor.js";
+import { pifagor } from "/src/js/module/pifagor.js";
+import { quadratic } from "/src/js/module/quadratic.js";
 import { rectangle } from "/src/js/module/rectangle.js";
 import { square } from "/src/js/module/square.js";
+import { triangle } from "/src/js/module/triangle.js";
+
 // console.log(square);
 // console.log(rectangle);
 
@@ -8,6 +16,13 @@ const funcs = {
   rectangle,
   square,
   circle,
+  triangle,
+  quadratic,
+  pifagor,
+  dividers,
+  commonDivisors,
+  mostCommonDivisor,
+  leastCommonMultiple,
 };
 
 for (const key in funcs) {
@@ -28,9 +43,22 @@ for (const key in funcs) {
 }
 
 select.addEventListener("change", function () {
-  contain.innerHTML = "";
+  if (+this.value === 0) {
+    contain.innerHTML = "";
+  } else {
+    contain.innerHTML = "";
 
-  let nameFunc = funcs[this.value].create();
+    let nameFunc = funcs[this.value].create();
 
-  nameFunc(contain, result);
+    nameFunc(contain, result);
+  }
 });
+
+function test(num) {
+  (function () {
+    console.log(num);
+  })();
+  num = "lost";
+}
+
+test("asda");

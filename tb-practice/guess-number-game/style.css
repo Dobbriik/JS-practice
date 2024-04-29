@@ -1,0 +1,184 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+	background: linear-gradient(
+		to bottom right,
+		rgb(57, 19, 107),
+		rgb(83, 24, 82)
+	);
+}
+
+.wrapper {
+	position: relative;
+	font-family: 'Courier New', Courier, monospace;
+	color: azure;
+	display: flex;
+	gap: 30px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 200px auto;
+}
+
+p {
+	font-size: 18px;
+	font-family: 'Courier New', Courier, monospace;
+}
+
+.info {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+}
+
+.blur {
+	filter: blur(5px);
+}
+
+span {
+	position: relative;
+	font-size: 18px;
+	line-height: 32px;
+	font-weight: 400;
+}
+
+.happy::after {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	content: 'Win';
+	font-size: 18px;
+	top: -25px;
+	left: 260px;
+	min-width: 130px;
+	height: content;
+	color: rgb(99, 221, 54);
+	border-radius: 2px;
+	padding: 0 4px;
+}
+
+input {
+	position: relative;
+	min-width: 100px;
+	padding-left: 3px;
+	border: 1px solid white;
+	border-radius: 4px;
+	background-color: rgb(225, 205, 230);
+	caret-color: #ff0073;
+	transition: caret, border-color, scale 0.3s ease;
+}
+.div__input {
+	display: flex;
+	position: relative;
+}
+.more::after {
+	position: absolute;
+	content: 'Введите больше↑';
+	font-size: 14px;
+	top: -25px;
+	left: 0px;
+	min-width: 130px;
+	height: content;
+	color: black;
+	background-color: #9f4a4a;
+	border-radius: 2px;
+	padding: 0 4px;
+}
+
+.less::after {
+	position: absolute;
+	content: 'Введите меньше↓';
+	font-size: 14px;
+	top: -25px;
+	left: 0px;
+	min-width: 130px;
+	height: fit-content;
+	color: black;
+	background-color: #8bd8a7;
+	border-radius: 2px;
+	padding: 0 4px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	/* display: none; <- Crashes Chrome on hover */
+	/* -webkit-appearance: none; */
+	-webkit-appearance: 40px;
+	margin: 0;
+	width: 50px;
+	height: 25px;
+	padding-top: 10px;
+	background-color: #bc68e3;
+	color: #009838;
+	/* <-- Apparently some margin are still there even though it's hidden */
+}
+input:focus {
+	outline: none;
+	scale: 1.05;
+	border-color: #ec5c9d;
+}
+
+button {
+	position: relative;
+	color: #e2e9eb;
+	font-family: 'Courier New', Courier, monospace;
+	font-weight: 600;
+	border: none;
+	border-radius: 2px;
+	background: linear-gradient(
+		to bottom right,
+		rgb(96, 40, 170),
+		rgb(127, 42, 126)
+	);
+	cursor: pointer;
+	padding: 4px 10px;
+}
+
+/* button::after {
+	display: none;
+	color: black;
+	content: attr(data-content);
+	position: absolute;
+	top: -25px;
+	left: 0px;
+	background-color: #e2e9eb;
+	min-width: 100px;
+	min-height: 20px;
+} */
+button:hover {
+	background: linear-gradient(
+		to bottom right,
+		rgb(128, 63, 213),
+		rgb(127, 42, 126)
+	);
+}
+
+button:active {
+	scale: 1.05;
+	background: linear-gradient(-225deg, rgb(62, 20, 118), rgb(162, 58, 160));
+}
+
+.help {
+	position: absolute;
+	top: -25px;
+	left: 0px;
+	background-color: #e2e9eb;
+	color: black;
+	border-radius: 2px;
+	min-width: fit-content;
+	min-height: fit-content;
+	padding: 2px 10px;
+}
+
+.block {
+	display: block;
+}
+.none {
+	display: none;
+}

@@ -22,10 +22,14 @@ par.style.fontSize = '20px'
 
 let btn = document.querySelector('button')
 
-let audio = document.querySelector('audio')
+let more = document.querySelector('#more')
+let happy = document.querySelector('#happy')
+let less = document.querySelector('#less')
+
 let result1 = 0
 btn.addEventListener('click', function start() {
 	span.classList.toggle('blur')
+	input.classList.toggle('none')
 	setTimeout(function () {
 		clearInterval(idInterval)
 		result1 = span.textContent
@@ -42,8 +46,10 @@ btn.addEventListener('click', function start() {
 		let num = +input.value
 		divInput.classList = 'div__input'
 		if (num > result1) {
+			less.play()
 			divInput.classList.add('less')
 		} else if (num < result1) {
+			more.play()
 			divInput.classList.add('more')
 		} else if (num === num) {
 			span.textContent = result1
@@ -53,7 +59,7 @@ btn.addEventListener('click', function start() {
 			par.style.color = '#3dff3d'
 			btn.addEventListener('click', guess)
 			btn.textContent = 'Заново'
-			audio.play()
+			happy.play()
 			btn.addEventListener('click', function () {
 				location.reload()
 			})

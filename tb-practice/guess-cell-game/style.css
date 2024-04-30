@@ -83,3 +83,10 @@ button:hover {
 .timer {
 	color: #ff4040;
 }
+.input {
+	width: 40px;
+}
+
+.info {
+	text-align: center;
+}

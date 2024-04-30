@@ -16,8 +16,28 @@ let spanCount = document.querySelector('#count')
 
 spanTimer.textContent = 35
 spanCount.textContent = 10
+//
+var eventHandlers = []
 
-spanTimer.addEventListener('click', function change() {
+function addEventHandler(element, eventType, handler) {
+	element.addEventListener(eventType, handler)
+	eventHandlers.push({
+		element: element,
+		eventType: eventType,
+		handler: handler,
+	})
+}
+
+function removeAllEventHandlers() {
+	for (var i = 0; i < eventHandlers.length; i++) {
+		var handler = eventHandlers[i]
+		handler.element.removeEventListener(handler.eventType, handler.handler)
+	}
+	eventHandlers = [] // Очищаем массив после удаления обработчиков
+}
+
+// Добавляем обработчики событий
+addEventHandler(spanTimer, 'click', function () {
 	let input = document.createElement('input')
 	input.classList.add('input')
 	input.value = spanTimer.textContent
@@ -27,10 +47,8 @@ spanTimer.addEventListener('click', function change() {
 	})
 	par.replaceChild(input, spanTimer)
 	input.focus()
-	spanTimer.removeEventListener('click', change)
 })
-
-spanCount.addEventListener('click', function change(event) {
+addEventHandler(spanCount, 'click', function () {
 	let input = document.createElement('input')
 	input.classList.add('input')
 	input.value = event.target.textContent
@@ -41,8 +59,36 @@ spanCount.addEventListener('click', function change(event) {
 	})
 	par.replaceChild(input, spanCount)
 	input.focus()
-	spanCount.removeEventListener('click', change)
+	// console.log('Mouse over element')
 })
+//
+
+// spanTimer.addEventListener('click', function change() {
+// 	let input = document.createElement('input')
+// 	input.classList.add('input')
+// 	input.value = spanTimer.textContent
+// 	input.addEventListener('blur', function blur() {
+// 		spanTimer.textContent = input.value
+// 		par.replaceChild(spanTimer, input)
+// 	})
+// 	par.replaceChild(input, spanTimer)
+// 	input.focus()
+// 	spanTimer.removeEventListener('click', change)
+// })
+
+// spanCount.addEventListener('click', function change(event) {
+// 	let input = document.createElement('input')
+// 	input.classList.add('input')
+// 	input.value = event.target.textContent
+// 	input.addEventListener('autofocus', function () {})
+// 	input.addEventListener('blur', function blur() {
+// 		spanCount.textContent = input.value
+// 		par.replaceChild(spanCount, input)
+// 	})
+// 	par.replaceChild(input, spanCount)
+// 	input.focus()
+// 	spanCount.removeEventListener('click', change)
+// })
 
 let par = document.querySelector('.par')
 
@@ -54,6 +100,7 @@ btnRemove.addEventListener('click', function () {
 
 table.addEventListener('click', function timer() {
 	btnStart.remove()
+	removeAllEventHandlers()
 
 	let count = 1
 	let randArr = []
@@ -71,6 +118,7 @@ table.addEventListener('click', function timer() {
 			randArr.push(randNum)
 		}
 	}
+	console.log(randArr)
 	for (let i = 0; i < 10; i++) {
 		let tr = document.createElement('tr')
 		for (let j = 0; j < 10; j++) {

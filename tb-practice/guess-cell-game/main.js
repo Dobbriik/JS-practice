@@ -4,12 +4,23 @@ let table = document.querySelector('table')
 let btnStart = document.createElement('button')
 btnStart.textContent = 'Начать'
 table.append(btnStart)
-let hoverAudio = document.querySelector('#hover')
-let missAudio = document.querySelector('#miss')
-let hitAudio = document.querySelector('#hit')
-let lostAudio = document.querySelector('#lost')
-let winAudio = document.querySelector('#win')
+
+// let hoverAudio = document.querySelector('hover2')
+
+// let missAudio = document.querySelector('#miss')
+// let missAudio = new Audio('music/miss.mp3')
+
+// let hitAudio = document.querySelector('#hit')
+// let hitAudio = new Audio('music/hit.mp3')
+
+// let lostAudio = document.querySelector('#lost')
+let lostAudio = new Audio('music/lost.mp3')
+
+// let winAudio = document.querySelector('#win')
+let winAudio = new Audio('music/win.mp3')
+
 let parinfo = document.querySelector('.info')
+let par = document.querySelector('.par')
 
 let spanTimer = document.querySelector('#timer')
 let spanCount = document.querySelector('#count')
@@ -47,7 +58,9 @@ addEventHandler(spanTimer, 'click', function () {
 	})
 	par.replaceChild(input, spanTimer)
 	input.focus()
+	console.log(eventHandlers)
 })
+
 addEventHandler(spanCount, 'click', function () {
 	let input = document.createElement('input')
 	input.classList.add('input')
@@ -59,38 +72,7 @@ addEventHandler(spanCount, 'click', function () {
 	})
 	par.replaceChild(input, spanCount)
 	input.focus()
-	// console.log('Mouse over element')
 })
-//
-
-// spanTimer.addEventListener('click', function change() {
-// 	let input = document.createElement('input')
-// 	input.classList.add('input')
-// 	input.value = spanTimer.textContent
-// 	input.addEventListener('blur', function blur() {
-// 		spanTimer.textContent = input.value
-// 		par.replaceChild(spanTimer, input)
-// 	})
-// 	par.replaceChild(input, spanTimer)
-// 	input.focus()
-// 	spanTimer.removeEventListener('click', change)
-// })
-
-// spanCount.addEventListener('click', function change(event) {
-// 	let input = document.createElement('input')
-// 	input.classList.add('input')
-// 	input.value = event.target.textContent
-// 	input.addEventListener('autofocus', function () {})
-// 	input.addEventListener('blur', function blur() {
-// 		spanCount.textContent = input.value
-// 		par.replaceChild(spanCount, input)
-// 	})
-// 	par.replaceChild(input, spanCount)
-// 	input.focus()
-// 	spanCount.removeEventListener('click', change)
-// })
-
-let par = document.querySelector('.par')
 
 let btnRemove = document.createElement('button')
 btnRemove.textContent = 'Заново'
@@ -98,11 +80,36 @@ btnRemove.addEventListener('click', function () {
 	location.reload()
 })
 
+let objectTd = []
+
+function addEventHandler2(element, eventType, handler, counter) {
+	element.addEventListener(eventType, handler)
+	objectTd.push({
+		element: element,
+		eventType: eventType,
+		handler: handler,
+		counter: counter,
+	})
+}
+
+function removeAllEventHandlers2(contettt) {
+	for (var i = 0; i < objectTd.length; i++) {
+		let handler = objectTd[i]
+		// console.log(handler)
+		handler.element.removeEventListener(handler.eventType, handler.handler)
+		// objectTd = [] // Очищаем массив после удаления обработчиков
+	}
+}
+
+function hoverAudio() {
+	let hoverAudio = new Audio('music/button.mp3')
+	hoverAudio.play()
+}
+let count = 0
 table.addEventListener('click', function timer() {
 	btnStart.remove()
 	removeAllEventHandlers()
 
-	let count = 1
 	let randArr = []
 
 	let findCounter = spanCount.textContent
@@ -118,37 +125,48 @@ table.addEventListener('click', function timer() {
 			randArr.push(randNum)
 		}
 	}
+
 	console.log(randArr)
+
+	let key = 0
 	for (let i = 0; i < 10; i++) {
 		let tr = document.createElement('tr')
 		for (let j = 0; j < 10; j++) {
 			let td = document.createElement('td')
-			td.addEventListener('mouseover', function hover() {
-				hoverAudio.play()
-			})
+			td.setAttribute('id', count)
+			console.log(count)
+			td.addEventListener('mouseover', hoverAudio)
 
 			if (
 				randArr.find(function (elem) {
 					return elem === count
 				})
 			) {
-				td.addEventListener('click', function hit() {
+				td.addEventListener('click', function hit(event) {
+					event.target.removeEventListener('mouseover', hoverAudio)
+					let con = count
+					removeAllEventHandlers2(con)
+
+					let hitAudio = new Audio('music/hit.mp3')
 					hitAudio.play()
 					this.style.backgroundColor = '#2bc52b'
 					spanCount.textContent--
-					this.removeEventListener('mouseover', hover)
-
 					td.removeEventListener('click', hit)
 				})
 			} else {
-				td.addEventListener('click', function () {
-					this.removeEventListener('mouseover', hover)
-					missAudio.play()
+				td.addEventListener('click', function miss(event) {
+					event.target.removeEventListener('mouseover', hoverAudio)
+					console.log(event.target.id)
+					let con = count
+					removeAllEventHandlers2(con)
 
+					let missAudio = new Audio('music/miss.mp3')
+					missAudio.play()
 					this.style.backgroundColor = '#e42c2c'
+					td.removeEventListener('click', miss)
 				})
 			}
-
+			//
 			tr.appendChild(td)
 			count++
 		}

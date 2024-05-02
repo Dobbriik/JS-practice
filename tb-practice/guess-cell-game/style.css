@@ -90,3 +90,17 @@ button:hover {
 .info {
 	text-align: center;
 }
+
+/* @media (min-width: 320px) {
+	table {
+		width: 350px;
+		height: 350px;
+	}
+} */
+
+/* @media (min-width: 320px) {
+	table {
+		width: 300px;
+		height: 300px;
+	}
+} */

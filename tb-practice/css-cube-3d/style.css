@@ -1,0 +1,114 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: rgb(73, 90, 85);
+}
+.wrap1 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 20px;
+	border: 1px solid rgb(188, 41, 173);
+	height: 1000px;
+	width: 1000px;
+	margin: 200px auto;
+	perspective: 1000px;
+}
+
+.wrap2 {
+	position: relative;
+	border-radius: 20px;
+	background-color: rgb(139, 41, 41);
+	height: 500px;
+	width: 500px;
+
+	transform: translateX(0px) translateY(0px) translateZ(-100px) rotateX(-30deg)
+		rotateY(-30deg);
+}
+
+.wrap3 {
+	position: absolute;
+
+	border-radius: 20px;
+	border: 1px solid rgb(132, 228, 156);
+	height: 500px;
+	width: 500px;
+}
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 400px auto;
+}
+.cube {
+	transform-style: preserve-3d;
+	position: relative;
+	width: 500px;
+	height: 500px;
+	border-radius: 20px;
+	border: 1px solid rgb(180, 234, 242);
+	/* perspective: 1000px; */
+	transform: rotateX(30deg) rotateY(30deg);
+}
+
+.side {
+	position: absolute;
+	width: 500px;
+	height: 500px;
+	border-radius: 20px;
+	border: 1px solid rgb(125, 231, 135);
+}
+
+.front.side {
+	background-color: rgba(67, 226, 83, 0.744);
+	transform: translateZ(250px);
+}
+.end.side {
+	background-color: rgba(146, 125, 231, 0.509);
+	transform: translateZ(-250px);
+}
+
+.right.side {
+	background-color: rgba(231, 143, 125, 0.509);
+	transform: translateX(250px) rotateY(90deg);
+}
+.left.side {
+	background-color: rgba(125, 169, 231, 0.509);
+	transform: translateX(-250px) rotateY(90deg);
+}
+
+.top.side {
+	background-color: rgb(0, 24, 177);
+	transform: translateY(-250px) rotateX(90deg);
+}
+
+.bottom.side {
+	background-color: rgba(47, 136, 18, 0.876);
+	transform: translateY(250px) rotateX(90deg);
+}
+
+@keyframes rotate {
+	0% {
+		transform: rotateX(45deg) rotateY(45deg);
+	}
+	25% {
+		transform: rotateX(-45deg) rotateY(45deg);
+	}
+	50% {
+		transform: rotateX(-45deg) rotateY(-45deg);
+	}
+	75% {
+		transform: rotateX(45deg) rotateY(-45deg);
+	}
+	100% {
+		transform: rotateX(45deg) rotateY(45deg);
+	}
+}
+
+.cube {
+	animation: rotate 20s infinite linear;
+}

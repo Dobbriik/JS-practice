@@ -1,0 +1,25 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.wrapper {
+	margin: 100px auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+.info {
+	display: flex;
+	gap: 10px;
+}
+
+ul {
+	list-style: none;
+	display: flex;
+	flex-direction: row;
+	gap: 5px;
+}

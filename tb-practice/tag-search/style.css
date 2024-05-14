@@ -1,0 +1,39 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	height: 100vh;
+	background: linear-gradient(34deg, #db3e3ea8, #0000ff75);
+}
+
+.wrapper {
+	margin-top: 20vw;
+	display: flex;
+	gap: 10px;
+	justify-content: center;
+	/* height: 100vw; */
+}
+
+.container {
+	margin: 0 auto;
+	margin-top: 10px;
+
+	width: 60vw;
+}
+
+input {
+	align-self: flex-start;
+}
+
+.text {
+}
+
+.btn {
+}
+
+.desc {
+	color: #003a55;
+}

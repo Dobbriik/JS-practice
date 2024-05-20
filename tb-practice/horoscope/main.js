@@ -1,10 +1,37 @@
 //
-import { dateArr, zodArr } from './src/base.js'
+import { dateArr, todayZodiacPredictions, zod, zodArr } from './src/base.js'
 
 let object = {
 	dateArr: dateArr,
 	zodArr: zodArr,
+	todayZodiacPredictions: todayZodiacPredictions,
+	zod: zod,
+	nowDate: new Date(),
 }
+
+function addRandomPredictions(length, elem, arr) {
+	if (length > 0) {
+		let random = Math.floor(Math.random() * length)
+		length--
+		arr.push(elem[random])
+		addRandomPredictions(length, elem, arr)
+	} else {
+		return
+	}
+}
+
+for (let i = 1; i < dateArr.length; i++) {
+	let arr = [...todayZodiacPredictions]
+	let arrRandom = []
+	for (let i = 0; i < arr.length; i++) {
+		let random = Math.floor(Math.random() * arr.length)
+		let randomElement = arr.slice(random, random + 1)
+		arrRandom.push(randomElement)
+	}
+	dateArr[i] = arrRandom
+}
+
+// console.log(dateArr)
 
 function getZodiac(dob) {
 	let value = dob
@@ -70,28 +97,82 @@ function getZodiac(dob) {
 	}
 }
 
+function getNumberDate(currentDate) {
+	let newDate = new Date(currentDate)
+	let year = newDate.getFullYear()
+	let month = newDate.getMonth()
+	let countDate = newDate.getDate()
+	if (month === 0) {
+		return countDate
+	} else {
+		for (let i = 0; i < month; i++) {
+			let newDate = new Date(year, i, 0)
+			countDate += newDate.getDate()
+		}
+		return countDate
+	}
+}
+let adsad = new Date(2024, 0, 0)
+// console.log(adsad)
+
 let input = document.querySelector('#date')
 let btn = document.querySelector('#btn')
+let btn2 = document.querySelector('#btn2')
+let btn3 = document.querySelector('#btn3')
 let p = document.querySelector('p')
+let count = 0
 
-btn.addEventListener('click', function () {
-	// console.log(getZodiac(input.value))
-	p.textContent = getZodiac(input.value)
+input.addEventListener('blur', function () {
+	let newDate = new Date()
+	count = getNumberDate(newDate)
+	console.log(count)
 })
 
-// input.addEventListener('input', function () {
-// 	let value = this.value.replace(/\./g, '')
+let newDate = new Date()
+function addText(value, addOrRem, nowDate) {
+	let formattedDate = newDate.toLocaleDateString()
+	let inputDate = value
+	let zodiac = getZodiac(inputDate)
+	let num = getNumberDate(nowDate)
 
-// 	if (value.length > 2) {
-// 		value = value.slice(0, 2) + '.' + value.slice(2)
-// 	}
-// 	if (value.length > 5) {
-// 		value = value.slice(0, 5) + '.' + value.slice(5)
-// 	}
+	let index = zod[zodiac]
 
-// 	this.value = value
-// })
+	if (addOrRem === 'add') {
+		newDate.setDate(newDate.getDate() + 1)
+		let formattedDate = newDate.toLocaleDateString()
+		count++
+		p.textContent = formattedDate + ' ' + zodiac + ' ' + dateArr[count][index]
+	} else if (addOrRem === 'rem') {
+		newDate.setDate(newDate.getDate() - 1)
+		let formattedDate = newDate.toLocaleDateString()
+		count--
+		p.textContent = formattedDate + ' ' + zodiac + ' ' + dateArr[count][index]
+	} else {
+		newDate = new Date()
+		let formattedDate = newDate.toLocaleDateString()
+		p.textContent = formattedDate + ' ' + zodiac + ' ' + dateArr[num][index]
+		count = getNumberDate(newDate)
+	}
+}
 
-let asdas = new Date('2021.12.23')
+btn.addEventListener('click', function () {
+	console.log(count)
+	addText(input.value, '', object.nowDate)
+	// console.log(input.value.slice(-2))
+	// let zodiac = getZodiac(input.value)
+	// let num = getNumberDate(input.value)
+	// let index = zod[zodiac]
+	// p.textContent = zodiac + ' ' + dateArr[num][index]
+})
 
-console.log(asdas)
+btn2.addEventListener('click', function () {
+	console.log(count)
+
+	addText(input.value, 'rem', object.nowDate)
+})
+
+btn3.addEventListener('click', function () {
+	console.log(count)
+
+	addText(input.value, 'add', object.nowDate)
+})

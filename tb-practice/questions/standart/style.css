@@ -1,0 +1,10 @@
+* {
+	box-sizing: border-box;
+}
+
+.right {
+	border: 1px solid green;
+}
+.wrong {
+	border: 1px solid red;
+}

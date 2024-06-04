@@ -39,6 +39,9 @@ function getLastSymbol(city) {
 	if (test == 'Ь') {
 		test = city.slice(-2, -1).toUpperCase()
 	}
+	if (test == 'Ы') {
+		test = city.slice(-2, -1).toUpperCase()
+	}
 	return test
 }
 
@@ -79,6 +82,17 @@ function addTextAnimation(city, form, lastSymbol) {
 	}, 200)
 }
 
+function checkValidCity(city) {
+	if (/\d/.test(city)) {
+		return false
+	} else if (city.match(/[a-zA-Z]/)) {
+		return false
+	} else if (city.length < 2) {
+		return false
+	}
+	return true
+}
+
 function addBotCity(humanCity) {
 	let validBotCity = findCities(getLastSymbol(humanCity), citiesBot)
 
@@ -115,6 +129,12 @@ function changeFlag(flag) {
 }
 
 function addEventCities(bot) {
+	if (!checkValidCity(field.value)) {
+		message.textContent = 'Введите корректный город.'
+		field.value = ''
+		return
+	}
+
 	let num = 2
 	if (countFlag) {
 		num = 1
@@ -164,24 +184,34 @@ friend.addEventListener('click', function () {
 	})
 })
 
+function addEventBotGame() {
+	count.textContent = 'Ваш ход.'
+	if (countFlag) {
+		count.textContent = 'Ход бота.'
+	}
+	if (countFlag) {
+		addBotCity(saveCity[saveCity.length - 1])
+	} else {
+		addEventCities('bot')
+		if (countFlag) {
+			count.textContent = 'Запустите бота.'
+			btn.value = 'Запустить бота'
+		}
+	}
+}
+
 bot.addEventListener('click', function () {
 	count.textContent = 'Ваш ход.'
 	rules.classList.toggle('active')
 	game.classList.toggle('active')
 
 	btn.addEventListener('click', function () {
-		count.textContent = 'Ваш ход.'
-		if (countFlag) {
-			count.textContent = 'Ход бота.'
-		}
-		if (countFlag) {
-			addBotCity(saveCity[saveCity.length - 1])
-		} else {
-			addEventCities('bot')
-			if (countFlag) {
-				count.textContent = 'Запустите бота.'
-				btn.value = 'Запустить бота'
-			}
+		addEventBotGame()
+	})
+
+	field.addEventListener('keydown', function (event) {
+		if (event.key === 'Enter') {
+			addEventBotGame()
 		}
 	})
 })

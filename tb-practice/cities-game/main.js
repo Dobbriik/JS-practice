@@ -83,9 +83,7 @@ function addTextAnimation(city, form, lastSymbol) {
 }
 
 function checkValidCity(city) {
-	if (/\d/.test(city)) {
-		return false
-	} else if (city.match(/[a-zA-Z]/)) {
+	if (/\d/.test(city) || city.match(/[a-zA-Z]/)) {
 		return false
 	} else if (city.length < 2) {
 		return false

@@ -1,0 +1,12 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.elem {
+	color: green;
+	width: 200px;
+	height: 200px;
+	font-size: 2em;
+}

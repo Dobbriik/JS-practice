@@ -1,5 +1,3 @@
-//
-
 let checkS = document.querySelector('button')
 let test = document.querySelector('#test')
 

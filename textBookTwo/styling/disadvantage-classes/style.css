@@ -1,0 +1,25 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.success {
+	color: green;
+}
+.warrning {
+	color: orange;
+}
+.error {
+	color: red;
+}
+
+[data-type='success'] {
+	color: green;
+}
+[data-type='warning'] {
+	color: orange;
+}
+[data-type='error'] {
+	color: red;
+}

@@ -2,6 +2,14 @@
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
+	font-family: 'Courier New', Courier, monospace;
+	font-weight: 700;
+}
+
+body {
+	background-image: url(./img/justdoit-dzhastduit-motivaciya.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 .wrapper {
@@ -9,13 +17,23 @@
 	margin: 0 50px auto;
 	margin-bottom: 10px;
 }
+.inp {
+	height: 27px;
+}
+
 #clear {
 	color: red;
 }
 
 button {
+	padding: 5px;
 	cursor: pointer;
 }
+
+li {
+	background-color: #c7ffeccf;
+}
+
 .task {
 	cursor: pointer;
 	word-wrap: break-word;
@@ -28,7 +46,7 @@ button {
 	text-overflow: ellipsis;
 	max-width: 200px;
 	padding: 10px;
-	border: 1px solid black;
+	border: 1px solid #caffc9c4;
 	border-radius: 5px;
 	display: flex;
 	flex-direction: column;

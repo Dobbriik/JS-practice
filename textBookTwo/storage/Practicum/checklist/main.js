@@ -20,7 +20,6 @@ function maxNum(arr) {
 const input = document.querySelector('#addList')
 const container = document.querySelector('#ul')
 const clear = document.querySelector('#clear')
-
 clear.addEventListener('click', function () {
 	localStorage.clear()
 	for (const elem of [...container.children]) {
@@ -64,6 +63,7 @@ function setDone(li) {
 	btnDone.style.color = 'green'
 	btnDone.textContent = 'Done'
 	btnDone.addEventListener('click', function () {
+		li.firstChild.textContent = 'You damn good!!!'
 		li.style.border = '3px solid green'
 		spanDoneBtn.lastChild.remove()
 	})
@@ -75,7 +75,7 @@ function setDelate(li) {
 	const spanDelateBtn = document.createElement('span')
 	spanDelateBtn.classList = 'Delate'
 	const btnDelate = document.createElement('button')
-	btnDelate.textContent = 'Delate'
+	btnDelate.textContent = 'Delete'
 	btnDelate.style.color = 'red'
 
 	btnDelate.addEventListener('click', function () {

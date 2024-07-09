@@ -77,3 +77,46 @@ function getTestData() {
 }
 
 getTestData()
+
+function getTestDataJson() {
+	let arrKeys = ['surname', 'name', 'patronymic']
+	const jsonPerson = []
+	for (const tr of document.querySelectorAll('tr')) {
+		let arrText = []
+		for (const td of tr.children) {
+			arrText.push(td.textContent)
+		}
+		let person = arrText.reduce((acc, value, index) => {
+			return {
+				...acc,
+				[arrKeys[index]]: value,
+			}
+		}, {})
+		jsonPerson.push(person)
+	}
+	return JSON.stringify(jsonPerson)
+}
+
+// console.log(getTestDataJson())
+
+function getTestTwoDataJson() {
+	const arrTr = [...document.querySelectorAll('tr')]
+	const person = arrTr.reduce((acc, value) => {
+		const child = value.children
+		return [
+			...acc,
+			{
+				surname: child[0].textContent,
+				name: child[1].textContent,
+				patronymic: child[2].textContent,
+			},
+		]
+	}, [])
+	return JSON.stringify(person)
+}
+
+console.log(getTestTwoDataJson())
+
+const jsonTest = JSON.parse(getTestTwoDataJson())
+
+console.log(jsonTest)

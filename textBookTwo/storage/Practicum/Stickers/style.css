@@ -1,0 +1,94 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: linear-gradient(to right, #99d1c8, #a4a3dd);
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	font-family: 'Courier New', Courier, monospace;
+	background-color: #e7e3cf;
+	width: 755px;
+	text-align: center;
+	margin: 0 auto;
+	padding: 10px 50px;
+	margin-top: 10px;
+}
+
+.container {
+	padding: 10px;
+	border-radius: 5px;
+	border-bottom: 1px solid rgb(135, 69, 69);
+	border-right: 1px solid rgb(135, 69, 69);
+	background: linear-gradient(172deg, #fffce2, #db8ed975);
+	min-height: 150px;
+}
+
+.container_top {
+	min-height: 200px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+}
+
+.container_bottom {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+.container_text {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.text {
+	font-family: 'Courier New', Courier, monospace;
+	padding: 5px;
+	height: 100px;
+}
+
+.stickers {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background: linear-gradient(182deg, #99d1c8, #a4a3dd);
+	padding: 5px;
+	border-radius: 5px;
+	width: 150px;
+	height: 200px;
+	cursor: pointer;
+}
+
+.text-save {
+	padding: 0;
+	position: relative;
+	max-height: 144px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.ellipsis::after {
+	content: '...';
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	background: white;
+	padding-left: 0px;
+}
+
+.delete {
+	cursor: pointer;
+}
+
+.btn {
+	cursor: pointer;
+}

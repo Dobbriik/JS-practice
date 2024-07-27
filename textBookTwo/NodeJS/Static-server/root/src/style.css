@@ -1,0 +1,32 @@
+@import url(../../components/styleComp.css);
+
+body {
+}
+
+.wrapper {
+	width: 1200px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+.info {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+	justify-content: space-between;
+}
+
+.info_text {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+p {
+	font-size: 17px;
+	line-height: 1.2;
+}
+
+img {
+	max-width: 600px;
+}

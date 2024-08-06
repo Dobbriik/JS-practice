@@ -1,0 +1,18 @@
+{
+	"name": "running-scripts-with-npm",
+	"version": "1.0.0",
+	"description": "",
+	"main": "main.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"count": "npx sloc src",
+		"cow": "npx cowsay hello"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"cowsay": "^1.6.0",
+		"sloc": "^0.3.2"
+	}
+}

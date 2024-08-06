@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "jquery": "^3.7.1",
+    "lodahs": "^0.0.1-security",
+    "underscore": "^1.13.7"
+  },
+  "devDependencies": {
+    "gulp": "^5.0.0",
+    "webpack": "^5.93.0"
+  }
+}

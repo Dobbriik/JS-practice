@@ -59,3 +59,65 @@ import * as math from './math.js';
 11. Экспорт по умолчанию 
 export default - при помощи команды можно экспортировать только одно значение.
 имя при import выбирается произвольно.
+
+12. Комбинация экспортов
+import test, {func1, func2} from './test.js';
+
+13. Импорт всего содержимого при комбинации экспортов
+import test, * as mod from './test.js';
+
+14. Экспорт значений (!!! искомое значение храниться в str.default = 'test')
+export default 'test';
+import str from './test.js';
+
+15. Экспорт массивов
+export default [1, 2, 3, 4];
+import arr from './test.js';
+
+16. Экспорт объектов
+export default {
+	a: 1,
+	b: 2,
+	c: 3
+};
+import obj from './test.js';
+
+17. Значения как константы
+Импортированные значения ведут себя как константы. Их нельзя изменить как const
+
+18. Импорт npm модулей
+npm install underscore
+import _ from 'underscore'; указывать спереди ./ для npm модулей - не нужно
+
+19. Можно импортировать не все функции, а только необходимые
+Если знаешь какие нужны 
+import {first, last} from 'underscore';
+
+20. Динамический импорт ES модулей
+ES модули можно импортировать динамически.
+btn.addEventListener('click', function() {
+	import('./test.js').then(({func1, func2}) => {
+		let res1 = func1();
+		let res2 = func2();
+		
+		console.log(res1, res2);
+	});
+});
+
+21. Динамический множественный импорт 
+Можно динамически импортировать сразу несколько модулей:
+btn.addEventListener('click', function() {
+	Promise.all([
+		import('./module1.js'),
+		import('./module2.js'),
+		import('./module3.js'),
+	])
+	.then(([module1, module2, module3]) => {
+		
+	});
+});
+
+22. Преобразование CommonJS модулей в ES
+В CommonJS импорты выполняются с помощью команды require, параметром которой указывается путь к модулю. Результат команды записывается в переменную.
+В CommonJS не ставится расширение .js для файлов, а в ES - ставится.
+let math = require('./math');

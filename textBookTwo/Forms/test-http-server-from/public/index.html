@@ -26,5 +26,39 @@
 			<input name="day" placeholder="day format 01 or 31" />
 			<input type="submit" />
 		</form>
+		<br /><br />
+		<form action="/postData/" method="POST">
+			<input name="login" placeholder="Login" />
+			<input name="password" placeholder="Password" />
+			<input type="submit" />
+		</form>
+		<br /><br />
+		<a href="/dataLink/?num=2">get</a>
+		<br /><br />
+		<a href="/getSum/?num1=2&num2=5">get</a>
+		<br /><br />
+		<a href="/getUser/?user=0">1</a>
+		<a href="/getUser/?user=1">2</a>
+		<a href="/getUser/?user=2">3</a>
+		<a href="/getUser/?user=3">4</a>
+		<br /><br />
+		<form id="forLink" action="/jsSubmit/" method="get">
+			<input name="text1" />
+			<input name="text2" />
+			<input type="submit" />
+		</form>
+		<a id="link">send</a>
+		<br /><br />
+		<form id="mail" action="/sendMail/" method="post">
+			<input name="mail" />
+		</form>
+		<br /><br />
+		<form id="targetForm" action="/target/" method="POST">
+			<input name="test1" value="123" />
+			<input name="test2" value="456" />
+			<input name="test3" value="789" />
+			<input type="submit" />
+		</form>
+		<script src="./script.js"></script>
 	</body>
 </html>

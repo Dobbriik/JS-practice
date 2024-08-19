@@ -1,3 +1,4 @@
+let arr = ['user1', 'user2', 'user3']
 export default {
 	'/handler/': function ({ get, post }) {
 		function mean(arr) {
@@ -23,5 +24,41 @@ export default {
 			return 'successfully'
 		}
 		return 'error date'
+	},
+	'/postData/': function ({ post }) {
+		const validLogin = 'Alex'
+		const validPassword = 'Shitikov'
+		try {
+			if (post.login === validLogin && post.password === validPassword) {
+				return 'Authorization is successful'
+			}
+			return 'Authentication error'
+		} catch (error) {
+			return 'Input error'
+		}
+	},
+	'/dataLink/': function ({ get }) {
+		return get.num ** 2
+	},
+	'/getSum/': function ({ get }) {
+		return +get.num1 + +get.num2
+	},
+	'/getUser/': function ({ get }) {
+		if (!arr[get.user]) {
+			return 'Error user'
+		}
+		return arr[get.user]
+	},
+	'/jsSubmit/': function (date) {
+		console.log(date)
+		return 'send successful'
+	},
+	'/sendMail/': function ({ post }) {
+		console.log(post.mail)
+		return 'mail send successful'
+	},
+	'/target/': function ({ post }) {
+		console.log(post)
+		return 'data successfully received'
 	},
 }

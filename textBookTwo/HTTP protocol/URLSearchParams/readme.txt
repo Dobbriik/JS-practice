@@ -37,3 +37,8 @@ searchParams.delete('b');
 for (let p of searchParams) {
 	console.log(p);
 }
+
+9. Несколько одинаковых параметров
+С помощью метода getAll можно получить массив значений этих параметров:
+let res = searchParams.getAll('a');
+console.dir(res); // выведет [1, 2]

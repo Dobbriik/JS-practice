@@ -1,6 +1,7 @@
 import {
 	getGooglePositions,
 	getPlayersPositions,
+	subscribe,
 } from '../../../../core/state-manager.js'
 import { GoogleComponent } from '../../common/Google/Google.component.js'
 import { PlayerComponent } from '../../common/Player/Player.component.js'
@@ -15,6 +16,8 @@ async function render(element, x, y) {
 	const googlePosition = await getGooglePositions()
 	const player1Position = await getPlayersPositions(1)
 	const player2Position = await getPlayersPositions(2)
+	console.log(googlePosition, 'googlePosition')
+	element.innerHTML = ''
 
 	if (googlePosition.x === +x && googlePosition.y === +y) {
 		element.append(GoogleComponent().element)

@@ -12,11 +12,9 @@ export async function change() {
 }
 
 let subscribe = []
-
 export function observer(func) {
 	subscribe.push(func)
 }
-
 function _notifyObserver() {
 	subscribe.forEach(element => {
 		try {

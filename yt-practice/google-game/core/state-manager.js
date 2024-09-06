@@ -5,10 +5,10 @@ const _state = {
 	settings: {
 		googleJumpInterval: 1000,
 		gridSize: {
-			rowsCount: 3,
-			columnsCount: 3,
+			rowsCount: 2,
+			columnsCount: 2,
 		},
-		pointsToLose: 3,
+		pointsToLose: 5,
 		pointsToWin: 5,
 	},
 	position: {
@@ -21,7 +21,7 @@ const _state = {
 				x: 0,
 				y: 0,
 			},
-			{ x: 0, y: 1 },
+			{ x: 0, y: 0 },
 		],
 	},
 	points: {
@@ -52,6 +52,9 @@ function _notifyObserver() {
 // Start
 let googleJumpInterval
 export async function start() {
+	if (_state.gameStatus !== GAME_STATUSES.SETTINGS) {
+		throw new Error('Incorrect game status to start')
+	}
 	_state.points.google = 0
 	_state.points.players = [0, 0]
 
@@ -72,23 +75,19 @@ export async function start() {
 		_state.points.google++
 
 		if (_state.points.google == _state.settings.pointsToLose) {
-			clearInterval(googleJumpInterval)
 			_state.gameStatus = GAME_STATUSES.LOSE
+			console.log('ntf interval')
+			clearInterval(googleJumpInterval)
 		}
 		_notifyObserver()
 	}, _state.settings.googleJumpInterval)
+	console.log('ntf start')
 	_notifyObserver()
 }
 
 export async function playAgain() {
-	for (const element of _observer) {
-		console.log(element())
-	}
 	_state.gameStatus = GAME_STATUSES.SETTINGS
-	// _notifyObserver()
-	for (const element of _observer) {
-		console.log(element())
-	}
+	_notifyObserver()
 }
 
 function _jumpGoogleToNewPosition() {

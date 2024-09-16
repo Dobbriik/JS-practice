@@ -7,6 +7,7 @@ const arrCS = await getCountryAndCitiesArray()
 for (const cities of arrCS) {
 	const option = document.createElement('option')
 	option.value = arrCS.indexOf(cities)
+	option.selected = true
 	option.textContent = cities[0]
 	countrySelect.appendChild(option)
 }
@@ -20,3 +21,5 @@ countrySelect.addEventListener('change', function () {
 		citiesSelect.appendChild(option)
 	}
 })
+
+let elem = [...countrySelect.children][0]

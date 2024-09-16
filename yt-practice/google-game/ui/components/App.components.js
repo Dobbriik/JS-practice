@@ -1,10 +1,12 @@
 import { GAME_STATUSES } from '../../core/constants.js'
 import { getGameStatus, subscribe } from '../../core/state-manager.js'
+import { AudioComponent } from './Audio/Audio.Component.js'
 import { GridComponent } from './Grid/Grid.components.js'
 import { LoseComponent } from './Lose/Lose.component/Lose.component.js'
 import { ResultPanelComponent } from './ResultPanel/ResultPanel.components.js'
 import { SettingsComponent } from './Settings/Settings.components.js'
 import { StartComponent } from './Start/Start.component/Start.component.js'
+import { WinComponent } from './Win/win.Component.js'
 
 export function AppComponent() {
 	const localeState = {
@@ -17,9 +19,10 @@ export function AppComponent() {
 		render(element, localeState)
 	})
 
-	console.log('app creating')
-
 	const element = document.createElement('div')
+
+	const audioComponent = AudioComponent()
+
 	render(element, localeState)
 	return { element }
 }
@@ -27,7 +30,7 @@ export function AppComponent() {
 async function render(element, localeState) {
 	const gameStatus = await getGameStatus()
 
-	if (localeState.prevGameStatus === gameStatus) return
+	if (localeState.prevGameStatus === gameStatus) return // если сменился статус идем дальше
 	localeState.prevGameStatus = gameStatus
 
 	localeState.cleanupFunction.forEach(cf => cf())
@@ -36,7 +39,6 @@ async function render(element, localeState) {
 	element.innerHTML = ''
 	switch (gameStatus) {
 		case GAME_STATUSES.IN_PROGRESS: {
-			console.log(gameStatus)
 			const settingsComponent = SettingsComponent()
 			const resultPanelComponent = ResultPanelComponent()
 			const gridComponent = GridComponent()
@@ -52,20 +54,16 @@ async function render(element, localeState) {
 			break
 		}
 		case GAME_STATUSES.LOSE: {
-			console.log(gameStatus)
-
 			const loseComponent = LoseComponent()
 			element.append(loseComponent.element)
 			break
 		}
 		case GAME_STATUSES.WIN: {
-			console.log(gameStatus)
-
+			const winComponent = WinComponent()
+			element.append(winComponent.element)
 			break
 		}
 		case GAME_STATUSES.SETTINGS: {
-			console.log(gameStatus)
-
 			const settingsComponent = SettingsComponent()
 			const startComponent = StartComponent()
 			element.append(settingsComponent.element, startComponent.element)

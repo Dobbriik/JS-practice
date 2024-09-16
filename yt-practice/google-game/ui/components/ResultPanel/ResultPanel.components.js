@@ -1,3 +1,4 @@
+import { EVENTS } from '../../../core/constants.js'
 import {
 	getPlayerPoints,
 	getGooglePoints,
@@ -9,7 +10,8 @@ export function ResultPanelComponent() {
 	const element = document.createElement('div')
 	element.classList.add('result-panel')
 
-	const observer = () => {
+	const observer = e => {
+		if (e.name !== EVENTS.SCORES_CHANGED) return
 		render(element)
 	}
 	subscribe(observer)
@@ -24,13 +26,11 @@ export function ResultPanelComponent() {
 }
 
 async function render(element) {
-	console.log('render result')
 	element.innerHTML = ''
 
 	const googlePoint = await getGooglePoints()
 	const player1Points = await getPlayerPoints(1)
 	const player2Points = await getPlayerPoints(2)
-	console.log(googlePoint, player1Points, player2Points)
 
 	element.innerHTML = `Player1: ${player1Points},Player2: ${player2Points},Google: ${googlePoint},`
 }

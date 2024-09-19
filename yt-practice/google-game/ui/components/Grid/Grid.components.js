@@ -14,29 +14,29 @@ export function GridComponent() {
 	const keyupObserver = e => {
 		switch (e.code) {
 			case 'ArrowUp':
-				movePlayer(1, MOVING_DIRECTIONS.UP)
+				movePlayer(2, MOVING_DIRECTIONS.UP)
 				break
 			case 'ArrowDown':
-				movePlayer(1, MOVING_DIRECTIONS.DOWN)
+				movePlayer(2, MOVING_DIRECTIONS.DOWN)
 				break
 			case 'ArrowRight':
-				movePlayer(1, MOVING_DIRECTIONS.RIGHT)
+				movePlayer(2, MOVING_DIRECTIONS.RIGHT)
 				break
 			case 'ArrowLeft':
-				movePlayer(1, MOVING_DIRECTIONS.LEFT)
+				movePlayer(2, MOVING_DIRECTIONS.LEFT)
 				break
 
 			case 'KeyW':
-				movePlayer(2, MOVING_DIRECTIONS.UP)
+				movePlayer(1, MOVING_DIRECTIONS.UP)
 				break
 			case 'KeyS':
-				movePlayer(2, MOVING_DIRECTIONS.DOWN)
+				movePlayer(1, MOVING_DIRECTIONS.DOWN)
 				break
 			case 'KeyD':
-				movePlayer(2, MOVING_DIRECTIONS.RIGHT)
+				movePlayer(1, MOVING_DIRECTIONS.RIGHT)
 				break
 			case 'KeyA':
-				movePlayer(2, MOVING_DIRECTIONS.LEFT)
+				movePlayer(1, MOVING_DIRECTIONS.LEFT)
 				break
 		}
 	}

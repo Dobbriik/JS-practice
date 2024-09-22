@@ -31,4 +31,24 @@ export default {
 		console.table(post)
 		return true
 	},
+
+	'/ajaxFormDataSend/': function ({ post }) {
+		let sum = []
+		for (const num of Object.values(post)) {
+			sum.push(num)
+		}
+
+		const res = sum.reduce((acc, val) => (acc += +val), 0) / sum.length
+		return res
+	},
+	'/sendJsonFetch/': function ({ post }) {
+		const data = JSON.parse(post)
+		console.log(typeof data)
+		console.log(typeof post)
+		return data
+	},
+	'/corsAjax/': function ({ post }) {
+		console.log(`post your port:${post}`)
+		return `server say my port ${3001}`
+	},
 }

@@ -180,3 +180,82 @@ sendData.addEventListener('click', function () {
 			fromData.textContent += 'post'
 		})
 })
+
+//Отправка формы через AJAX с помощью FormData JavaScript
+const ajaxFormDataSend = document.querySelector('#ajaxFormDataSend')
+ajaxFormDataSend.addEventListener('submit', function (event) {
+	let promise = fetch('/ajaxFormDataSend/', {
+		method: 'POST',
+		body: 'my port 3001', // передаем ссылку на форму
+	})
+		.then(response => {
+			return response.text()
+		})
+		.then(text => {
+			console.log(text)
+		})
+	event.preventDefault()
+})
+
+//Отправка JSON на сервер с помощью AJAX в JavaScript
+const sendJsonFetch = document.querySelector('#sendJsonFetch')
+sendJsonFetch.addEventListener('click', function () {
+	let promise = fetch('/sendJsonFetch/', {
+		method: 'post',
+		body: JSON.stringify([1, 2, 3, 4, 5]),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	})
+		.then(response => {
+			return response.text()
+		})
+		.then(text => {
+			console.log(text)
+		})
+})
+
+//Политика CORS в AJAX запросах в JavaScript
+const corsAjax = document.querySelector('#corsAjax')
+corsAjax.addEventListener('click', function () {
+	let promise = fetch('/corsAjax/', {
+		method: 'post',
+		body: JSON.stringify([1, 2, 3, 4, 5]),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	})
+		.then(response => {
+			return response.text()
+		})
+		.then(text => {
+			console.log(text)
+		})
+})
+
+//Перепишите следующий код в синхронном стиле:
+const syncStyleFetch = document.querySelector('#syncStyleFetch')
+const wrapForSyncStyleFetch = document.querySelector('#wrapForSyncStyleFetch')
+syncStyleFetch.addEventListener('click', async function () {
+	try {
+		const response = await fetch('/ajax.html')
+		const text = await response.text()
+		wrapForSyncStyleFetch.innerHTML = text
+	} catch (error) {
+		console.log(error)
+	}
+	// let promise = fetch('/ajax.html')
+	// 	.then(response => {
+	// 		if (response.ok) {
+	// 			return response.text()
+	// 		} else {
+	// 			throw new Error('плохой статус ответа')
+	// 		}
+	// 	})
+	// 	.then(text => {
+	// 		console.log(text)
+	// 	})
+	// 	.catch(error => {
+	// 		console.log(error)
+	// 	})
+})

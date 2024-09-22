@@ -50,7 +50,6 @@ app.get('/events', (req, res) => {
 
 app.get('/:functionName', async (req, res) => {
 	let { ...queryParams } = req.query
-	// queryParams = Object.values(queryParams)
 	let functionName = req.params
 	functionName = functionName.functionName
 	if (functions[functionName]) {

@@ -54,6 +54,31 @@ function _notifyObserver(name, payload = {}) {
 
 // COMMANDS/SETTERS
 let googleJumpInterval
+function _stopInterval() {
+	clearInterval(googleJumpInterval)
+}
+function _startInterval() {
+	googleJumpInterval = setInterval(() => {
+		const oldPosition = { ..._state.position.google } // сейвим позицию
+		_jumpGoogleToNewPosition() // гугл прыгает
+		_notifyObserver(EVENTS.GOOGLE_JUMPED, {
+			oldPosition,
+			newPosition: { ..._state.position.google }, // передаём новую и старую позицию
+		})
+
+		_notifyObserver(EVENTS.GOOGLE_RUN_AWAY)
+		_state.points.google++
+
+		_notifyObserver(EVENTS.SCORES_CHANGED)
+
+		if (_state.points.google == _state.settings.pointsToLose) {
+			clearInterval(googleJumpInterval) // STOP INTERVAL гугл победил
+			_state.gameStatus = GAME_STATUSES.LOSE
+			_notifyObserver(EVENTS.STATUS_CHANGED)
+		}
+	}, _state.settings.googleJumpInterval)
+}
+
 export async function start() {
 	_state.winPlayerNumber = 0
 
@@ -79,25 +104,7 @@ export async function start() {
 	_state.points.google = 0
 	_state.points.players = [0, 0]
 
-	googleJumpInterval = setInterval(() => {
-		const oldPosition = { ..._state.position.google } // сейвим позицию
-		_jumpGoogleToNewPosition() // гугл прыгает
-		_notifyObserver(EVENTS.GOOGLE_JUMPED, {
-			oldPosition,
-			newPosition: { ..._state.position.google }, // передаём новую и старую позицию
-		})
-
-		_notifyObserver(EVENTS.GOOGLE_RUN_AWAY)
-		console.log('add')
-		_state.points.google++
-		_notifyObserver(EVENTS.SCORES_CHANGED)
-
-		if (_state.points.google == _state.settings.pointsToLose) {
-			clearInterval(googleJumpInterval) // STOP INTERVAL гугл победил
-			_state.gameStatus = GAME_STATUSES.LOSE
-			_notifyObserver(EVENTS.STATUS_CHANGED)
-		}
-	}, _state.settings.googleJumpInterval)
+	_startInterval()
 
 	_state.gameStatus = GAME_STATUSES.IN_PROGRESS
 	_notifyObserver(EVENTS.STATUS_CHANGED)
@@ -182,7 +189,12 @@ function _checkGooglePosition(newPosition) {
 		newPosition.y === _state.position.google.y
 	)
 }
+let timerCatch = false
 function _catchGoogle(playerNumber) {
+	timerCatch = false
+	setTimeout(() => {
+		timerCatch = true
+	}, _state.settings.googleJumpInterval)
 	const playerIndex = _getIndexPlayer(playerNumber)
 	_state.points.players[playerIndex]++
 	_notifyObserver(EVENTS.SCORES_CHANGED)
@@ -196,6 +208,8 @@ function _catchGoogle(playerNumber) {
 	} else {
 		const oldPosition = { ..._state.position.google }
 		_jumpGoogleToNewPosition()
+		_stopInterval()
+		_startInterval()
 		_notifyObserver(EVENTS.GOOGLE_JUMPED, {
 			oldPosition,
 			newPosition: { ..._state.position.google },

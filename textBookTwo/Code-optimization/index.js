@@ -219,4 +219,138 @@ function hueta() {
 	Array.from(elemS).forEach(elem => {
 		elem.textContent *= elem.textContent
 	})
+
+	let inp = document.querySelector('input')
+
+	inp.addEventListener('blur', function () {
+		const lengthValue = inp.value.length
+		const minValue = inp.dataset.min //5
+		const maxValue = inp.dataset.max //10
+		if (minValue > lengthValue || maxValue < lengthValue) {
+			console.log('+++')
+		} else {
+			console.log('---')
+		}
+	})
+
+	function minMax(length) {
+		if (5 <= length && 10 >= length) {
+			console.log('+++ minMax')
+		} else {
+			console.log('--- minMax')
+		}
+	}
 }
+
+//Оптимизация потребления памяти в JavaScript
+
+function optimizationMemory(start, end) {
+	let counter = 0
+	let counterloop = 0
+	for (let i = start; i <= end; i++) {
+		if (i % 7 == 0) {
+			arr.push(i)
+			i += 6
+			counter++
+		}
+		counterloop++
+	}
+	return [counter, counterloop]
+}
+
+function getDivisors(num) {
+	let sum = []
+	let counterLoop = 0
+	for (let i = 1; i <= num / 2; i++) {
+		if (num % i === 0) {
+			sum.push(i)
+		}
+		counterLoop++
+	}
+	sum.push(num)
+	return [sum, counterLoop]
+}
+
+console.log('object'.length)
+console.log('object'.includes('j'))
+
+//Создайте HTML таблицу размером 100 на 100. Сделайте так, чтобы каждая ячейка по клику красилась в красный цвет.
+function createTable(row, col) {
+	const table = document.createElement('table')
+	table.addEventListener('click', function (event) {
+		let td = event.target.closest('td')
+		if (td) {
+			td.classList.toggle('red')
+		}
+	})
+
+	for (let i = 0; i < row; i++) {
+		const tr = document.createElement('tr')
+		for (let j = 0; j < col; j++) {
+			const td = document.createElement('td')
+			tr.appendChild(td)
+		}
+		table.appendChild(tr)
+	}
+
+	document.body.appendChild(table)
+}
+
+//Следующий код находит взаимно-простые числа из заданного промежутка. Оптимизируйте его:
+
+function getRelativelyPrime(range) {
+	let res = []
+
+	for (let i = 2; i <= range; i++) {
+		for (let j = 2; j < range; j++) {
+			if (gcd(i, j)) {
+				res.push([i, j])
+			}
+		}
+	}
+
+	return res
+}
+function isRelativelyPrime(num1, num2) {
+	let arr1 = getDivisors(num1)
+	let arr2 = getDivisors(num2)
+	let int = getIntersect(arr1, arr2)
+
+	if (int.length === 0) {
+		return true
+	} else {
+		return false
+	}
+}
+function getIntersect(arr1, arr2) {
+	let result = []
+
+	for (let elem of arr1) {
+		if (arr2.includes(elem)) {
+			result.push(elem)
+		}
+	}
+
+	return result
+}
+function getDivisors(num) {
+	let res = []
+
+	for (let i = 2; i <= num; i++) {
+		if (num % i === 0) {
+			res.push(i)
+		}
+	}
+
+	return res
+}
+function gcd(a, b) {
+	while (b !== 0) {
+		let temp = b
+		b = a % b
+		a = temp
+	}
+	return a === 1
+}
+
+console.log(getRelativelyPrime(6))
